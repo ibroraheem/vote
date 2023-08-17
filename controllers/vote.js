@@ -3,6 +3,7 @@ const Candidate = require('../models/candidate')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 
+
 const generateOtp = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1]
@@ -168,16 +169,18 @@ const vote = async (req, res) => {
             welfare.voters.push(user.matric)
             await welfare2.save()
         }
-        const src = await Candidate.find({ _id: ballot.src })
-        if (src) {
-            ballot.src.forEach(async (srcId) => {
-                const src = await Candidate.findOne({ _id: srcId })
-                if (src) {
-                    src.votes += 1
-                    src.voters.push(user.matric)
-                    await src.save()
-                }
-            })
+        if (user.level !== '500') {
+            const src = await Candidate.find({ _id: ballot.src })
+            if (src) {
+                ballot.src.forEach(async (srcId) => {
+                    const src = await Candidate.findOne({ _id: srcId })
+                    if (src) {
+                        src.votes += 1
+                        src.voters.push(user.matric)
+                        await src.save()
+                    }
+                })
+            }
         }
         user.hasVoted = true
         await user.save()
