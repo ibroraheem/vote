@@ -8,7 +8,7 @@ bodyParser.urlencoded({ extended: false });
 app.use(bodyParser.json());
 app.use(cors(
     {
-        origin: 'https://foa-votingsys.vercel.app',
+        origin: 'https://naaselectionportal.xyz',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'x-access-token', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Headers','Access-Control-Origin-Headers', 'Access-Control-Request-Headers', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Credentials'],
     }
