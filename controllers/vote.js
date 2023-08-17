@@ -162,7 +162,7 @@ const vote = async (req, res) => {
             await librarian.save()
         }
 
-        const welfare2 = await Candidate.findOne({ _id: ballot["welfare2"] })
+        const welfare2 = await Candidate.findOne({ _id: ballot["welfare secretary 2"] })
         if (welfare2) {
             welfare2.votes += 1
             welfare.voters.push(user.matric)
